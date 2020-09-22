@@ -1,0 +1,143 @@
+<!doctype html>
+<html ng-app="userApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="./js/app.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+  <body>
+    <div ng-controller="userController as userctl" class="w3-container">
+      <!-- -->
+
+      <br/><input type="checkbox" ng-model="userctl.operationGetAll" value="Insert" ng-click="userctl.showHideAllUsers()"> Show all users</input>
+      <div ng-show="userctl.allUsersIsVisible">
+        <table class="w3-table w3-bordered w3-striped" style="width:60%">
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Telephone</td>
+              <td>Age</td>
+              <td>Gender</td>
+              <td>Hobby</td>
+              <td>Creation date</td>
+            </tr>
+          </thead>
+          <tr ng-repeat="userElement in userctl.userList">
+            <td>{{userElement.name}}</td>
+            <td>{{userElement.telephone}}</td>
+            <td>{{userElement.age}}</td>
+            <td>{{userElement.gender}}</td>
+            <td>{{userElement.hobby}}</td>
+            <td>{{userElement.registrationdate}}</td>
+            <td><a href="" class="w3-btn w3-green w3-ripple" ng-click="userctl.deleteUser(userElement)">Delete it</a></td>
+          </tr>
+        </table>
+      </div>
+
+
+      <br/><input type="checkbox" ng-model="userctl.operationInsert" value="Insert" ng-click="userctl.showHideInsert()"> Add a new user</input><br>
+      <div ng-show="userctl.insertIsVisible">
+        <form ng-submit="userctl.addUser()">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Users</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Name:</td>
+            <td>
+              <input type="text" ng-model="userctl.userName"  size="30"
+                     placeholder="User name" ng-disabled="false" required="" class="w3-input w3-border">
+            </td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td>
+              <input type="email" ng-model="userctl.userEmail"  size="30"
+                     placeholder="Email" required="" class="w3-input w3-border">
+            </td>
+          </tr>
+          <tr>
+            <td>Telephone:</td>
+            <td>
+              <input type="text" ng-model="userctl.userTelephone"  size="30"
+                     placeholder="Telephone" required="" class="w3-input w3-border">
+            </td>
+          </tr>
+          <tr>
+            <td>Password:</td>
+            <td>
+              <input type="password" ng-model="userctl.userPassword"  size="30"
+                     placeholder="Password" required="" class="w3-input w3-border">
+            </td>
+          </tr>
+          <tr>
+            <td>Age:</td>
+            <td>
+              <input type="number" ng-model="userctl.userAge"  size="30"
+                     placeholder="Age" required="" class="w3-input w3-border">
+            </td>
+          </tr>
+          <tr>
+            <td>Gender:</td>
+            <td>
+              <select ng-model="userctl.userGender" name="gender" required="">
+                <option value="M" selected="selected">Male</option>
+                <option value="F">Female</option>
+             </select>
+          </td>
+          </tr>
+          <tr>
+            <td>Hobby:</td>
+            <td>
+              <input type="text" ng-model="userctl.userHobby"  size="30"
+                   placeholder="Hobby" required="" class="w3-input w3-border">
+          </td>
+          </tr>
+          <tr>
+              <td>
+                <input  type="submit" value="Insert" class="w3-btn w3-green w3-ripple">
+              </td>
+              <td><label>{{userctl.insertMessage}}</label></td>
+          </tr>
+        </table>
+        </form>
+      </div>
+
+      <input type="checkbox" ng-model="userctl.operationSearch" value="Search" ng-click="userctl.showHideSearch()"> Search by name and hobby</input>
+      <div ng-show="userctl.searchIsVisible">
+        <form ng-submit="userctl.addUser()">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="2">Users</th>
+            </tr>
+          </thead>
+          <tr>
+            <td>Name:</td>
+            <td>
+              <input type="text" ng-model="userctl.userName"  size="30"
+                     placeholder="User name" ng-disabled="false" class="w3-input w3-border">
+            </td>
+          </tr>
+          <tr>
+            <td>Hobby:</td>
+            <td>
+              <input type="text" ng-model="userctl.userHobby"  size="30"
+                   placeholder="Hobby" class="w3-input w3-border">
+          </td>
+          </tr>
+          <tr>
+              <td>
+                <button type="button" name="searchbtn" class="w3-btn w3-green w3-ripple">Search</button>
+              </td>
+          </tr>
+        </table>
+        </form>
+      </div>
+
+
+    </div>
+  </body>
+</html>
